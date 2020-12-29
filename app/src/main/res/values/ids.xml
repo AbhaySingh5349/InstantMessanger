@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="Tag_Message_Value" type="id" />
+    <item name="Tag_Message_Id" type="id" />
+    <item name="Tag_Message_Type" type="id" />
+
+</resources>
