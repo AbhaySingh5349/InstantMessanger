@@ -24,16 +24,16 @@
 ![Webp net-resizeimage](https://user-images.githubusercontent.com/48565759/103352759-22f27c00-4acd-11eb-820c-eed62c0cba79.png)
 
 # Libraries:
---> [Circle Image View](https://github.com/hdodenhof/CircleImageView)
-
---> [Material Design Library](https://github.com/navasmdc/MaterialDesignLibrary)
-
 --> [ButterKnife View Binding](https://github.com/JakeWharton/butterknife)
-
---> [Glide Media Management](https://github.com/bumptech/glide)
-
---> [Country Phone Code Selector](https://github.com/hbb20/CountryCodePickerProject)
 
 --> [Swipe To Refresh UI pattern](https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout)
 
 --> [View Pager Fragments transition](https://developer.android.com/jetpack/androidx/releases/viewpager2)
+
+--> [Circle Image View](https://github.com/hdodenhof/CircleImageView)
+
+--> [Material Design Library](https://github.com/navasmdc/MaterialDesignLibrary)
+
+--> [Glide Media Management](https://github.com/bumptech/glide)
+
+--> [Country Phone Code Selector](https://github.com/hbb20/CountryCodePickerProject)
