@@ -14,4 +14,5 @@
 --> Can update password through Email verification.
 
 # Screenshots:
-![Webp net-resizeimage](https://user-images.githubusercontent.com/48565759/103351642-db1e2580-4ac9-11eb-9ca9-808a7e551ae0.png)
+![Webp net-resizeimage](https://user-images.githubusercontent.com/48565759/103351923-bbd3c800-4aca-11eb-982d-fa0f965704c0.png)
+
