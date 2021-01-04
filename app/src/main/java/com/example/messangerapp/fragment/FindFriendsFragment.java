@@ -146,7 +146,7 @@ public class FindFriendsFragment extends Fragment {
         FirebaseRecyclerOptions<FindFriendsModelClass> findFriendsFirebaseRecyclerOptions = null;
 
         if(search == null){
-            findFriendsFirebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<FindFriendsModelClass>().setQuery(userDatabaseReference,FindFriendsModelClass.class).build();
+            findFriendsFirebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<FindFriendsModelClass>().setQuery(userDatabaseReference.orderByChild(NodeNames.NAME),FindFriendsModelClass.class).build();
         }else {
             findFriendsFirebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<FindFriendsModelClass>().setQuery(userDatabaseReference.orderByChild(NodeNames.NAME).startAt(search).endAt(search + "\uf8ff"),FindFriendsModelClass.class).build();
         }

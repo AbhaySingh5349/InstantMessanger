@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.messangerapp.firebasetree.NodeNames;
@@ -27,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
@@ -57,9 +59,10 @@ public class MainActivity extends AppCompatActivity {
         firebaseUser = firebaseAuth.getCurrentUser();
         currentUserId = Objects.requireNonNull(firebaseUser).getUid();
 
-        // reference to database nodes
+        userDatabaseReference = FirebaseDatabase.getInstance().getReference().child(NodeNames.USERS);// reference to database nodes
 
-        userDatabaseReference = FirebaseDatabase.getInstance().getReference().child(NodeNames.USERS);
+        // updating current status of user
+
         userDatabaseReference.child(currentUserId).child(NodeNames.ACTIVESTATUS).setValue("Online");
         userDatabaseReference.child(currentUserId).child(NodeNames.ACTIVESTATUS).onDisconnect().setValue("Offline");
     }

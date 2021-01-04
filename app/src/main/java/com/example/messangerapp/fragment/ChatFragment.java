@@ -111,7 +111,7 @@ public class ChatFragment extends Fragment {
         userDatabaseReference = FirebaseDatabase.getInstance().getReference().child(NodeNames.USERS);
         chatsDatabaseReference = FirebaseDatabase.getInstance().getReference().child(NodeNames.CHATS);
 
-        query = chatsDatabaseReference.child(currentUserId).orderByChild(NodeNames.TIMESTAMP);
+        query = chatsDatabaseReference.child(currentUserId);
 
         childEventListener = new ChildEventListener() {
             @Override
@@ -178,7 +178,7 @@ public class ChatFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
 
-                    chatModelClassList.clear();
+                //    chatModelClassList.clear();
 
                     String userName = Objects.requireNonNull(snapshot.child(NodeNames.NAME).getValue()).toString();
                     String profileImage = Objects.requireNonNull(snapshot.child(NodeNames.PHOTOURL).getValue()).toString();
@@ -206,7 +206,6 @@ public class ChatFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         query.removeEventListener(childEventListener);
     }
 }

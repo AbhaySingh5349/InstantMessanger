@@ -71,21 +71,21 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
         chatReference.child(chatUserId).child(currentUserId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
+                if(snapshot.exists() && snapshot.hasChild(NodeNames.LASTMESSAGETIME)){
                     currentUserTimeStamp = Long.parseLong(snapshot.child(NodeNames.LASTMESSAGETIME).getValue().toString());
                 }
 
                 chatReference.child(currentUserId).child(chatUserId).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()){
+                        if(snapshot.exists() && snapshot.hasChild(NodeNames.LASTMESSAGETIME)){
                             chatUserTimeStamp = Long.parseLong(snapshot.child(NodeNames.LASTMESSAGETIME).getValue().toString());
                         }
                         if(chatUserTimeStamp < currentUserTimeStamp){
                             chatReference.child(chatUserId).child(currentUserId).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    if(snapshot.exists()){
+                                    if(snapshot.exists() && snapshot.hasChild(NodeNames.LASTMESSAGE)){
                                         String lastMessage = snapshot.child(NodeNames.LASTMESSAGE).getValue().toString();
                                         lastMessage = lastMessage.length()>30?lastMessage.substring(0,30):lastMessage; // showing 1st 30 characters of last received message
                                         holder.lastMessageTextView.setText("(sent): " + lastMessage);
@@ -104,7 +104,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatLi
                             chatReference.child(currentUserId).child(chatUserId).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    if(snapshot.exists()){
+                                    if(snapshot.exists() && snapshot.hasChild(NodeNames.LASTMESSAGE)){
                                         String lastMessage = snapshot.child(NodeNames.LASTMESSAGE).getValue().toString();
                                         lastMessage = lastMessage.length()>30?lastMessage.substring(0,30):lastMessage; // showing 1st 30 characters of last received message
                                         holder.lastMessageTextView.setText("(received): " + lastMessage);

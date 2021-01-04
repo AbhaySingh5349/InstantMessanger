@@ -776,6 +776,8 @@ public class ChatActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         rootDatabaseReference.child(NodeNames.CHATS).child(currentUserId).child(chatUserId).child(NodeNames.UNREADCOUNT).setValue(0);
+        startActivity(new Intent(ChatActivity.this,MainActivity.class));
+        finish();
 
         super.onBackPressed();
     }
