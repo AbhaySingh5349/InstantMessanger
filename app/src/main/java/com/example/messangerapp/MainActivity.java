@@ -20,7 +20,9 @@ import com.example.messangerapp.fragment.ChatFragment;
 import com.example.messangerapp.fragment.FindFriendsFragment;
 import com.example.messangerapp.fragment.RequestsFragment;
 import com.example.messangerapp.profile.ProfileActivity;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
     DatabaseReference userDatabaseReference;
     String currentUserId;
 
+    private InterstitialAd interstitialAd;
     private RewardedVideoAd rewardedVideoAd;
 
     @Override
@@ -59,6 +62,20 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
         viewPager = findViewById(R.id.viewPager);
 
         setViewPager();
+
+        interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAd.loadAd(new AdRequest.Builder().build());
+
+        interstitialAd.setAdListener(new AdListener()
+                                     {
+                                         @Override
+                                         public void onAdClosed() {
+                                             startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+                                             interstitialAd.loadAd(new AdRequest.Builder().build());
+                                         }
+                                     }
+        );
 
         MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");
         rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
@@ -94,8 +111,13 @@ public class MainActivity extends AppCompatActivity implements RewardedVideoAdLi
                 if(rewardedVideoAd.isLoaded()){
                     rewardedVideoAd.show();
                 }
-                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-                return true;
+
+                if(interstitialAd.isLoaded()){
+                    interstitialAd.show();
+                }else {
+                    startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                    return true;
+                }
 
             default:
                 return false;
