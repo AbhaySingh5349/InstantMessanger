@@ -27,6 +27,9 @@ import com.example.messangerapp.R;
 import com.example.messangerapp.firebasetree.NodeNames;
 import com.example.messangerapp.login.LoginActivity;
 import com.example.messangerapp.password.ChangePasswordActivity;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -74,6 +77,8 @@ public class ProfileActivity extends AppCompatActivity {
     Button logoutBtn;
     @BindView(R.id.progressBar)
     View progressBar;
+    @BindView(R.id.bannerAd)
+    AdView bannerAd;
 
     FirebaseAuth firebaseAuth; // to create object of Firebase Auth class
     FirebaseUser firebaseUser; // to create object of Firebase User class to get current user
@@ -84,7 +89,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     UserProfileChangeRequest userProfileChangeRequest;
 
-    String name, email, password, userFirebaseId, profileImageName;
+    String name, email, userFirebaseId, profileImageName;
     int profileImageRequestCode=101 , readExternalStorageRequestCode=102;
 
     @Override
@@ -92,6 +97,10 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
+
+        MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");
+        AdRequest adRequest = new AdRequest.Builder().build();
+        bannerAd.loadAd(adRequest);
 
         storageReference = FirebaseStorage.getInstance().getReference(); // give reference to root folder of file storage
 

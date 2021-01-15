@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.profileMenuItem:
                 startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-                finish();
                 return true;
 
             default:
