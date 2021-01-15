@@ -20,6 +20,11 @@ import com.example.messangerapp.fragment.ChatFragment;
 import com.example.messangerapp.fragment.FindFriendsFragment;
 import com.example.messangerapp.fragment.RequestsFragment;
 import com.example.messangerapp.profile.ProfileActivity;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,7 +36,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RewardedVideoAdListener {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -41,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser firebaseUser; // to create object of Firebase User class to get current user to store currently loged in user
     DatabaseReference userDatabaseReference;
     String currentUserId;
+
+    private RewardedVideoAd rewardedVideoAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
 
         setViewPager();
+
+        MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");
+        rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
+        rewardedVideoAd.setRewardedVideoAdListener(this);
+        loadRewardVideoAd();
 
         // getting current user
 
@@ -79,12 +91,79 @@ public class MainActivity extends AppCompatActivity {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()){
             case R.id.profileMenuItem:
+                if(rewardedVideoAd.isLoaded()){
+                    rewardedVideoAd.show();
+                }
                 startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                 return true;
 
             default:
                 return false;
         }
+    }
+
+    private void loadRewardVideoAd() {
+        if(!rewardedVideoAd.isLoaded()){
+            rewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917", new AdRequest.Builder().build());
+        }
+    }
+
+    @Override
+    public void onRewardedVideoAdLoaded() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+
+    }
+
+    @Override
+    public void onRewardedVideoStarted() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+        loadRewardVideoAd();
+    }
+
+    @Override
+    public void onRewarded(RewardItem rewardItem) {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdLeftApplication() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdFailedToLoad(int i) {
+
+    }
+
+    @Override
+    public void onRewardedVideoCompleted() {
+
+    }
+
+    @Override
+    protected void onPause() {
+        rewardedVideoAd.pause(this);
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        rewardedVideoAd.resume(this);
+        super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        rewardedVideoAd.destroy(this);
+        super.onDestroy();
     }
 
     // to manage swipe feature we need adapter
