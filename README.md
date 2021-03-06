@@ -26,6 +26,8 @@
 # Libraries:
 --> [Country Phone Code Selector](https://github.com/hbb20/CountryCodePickerProject)
 
+--> [Glide Media Management](https://github.com/bumptech/glide)
+
 --> [ButterKnife View Binding](https://github.com/JakeWharton/butterknife)
 
 --> [Swipe To Refresh UI pattern](https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout)
@@ -35,8 +37,6 @@
 --> [Circle Image View](https://github.com/hdodenhof/CircleImageView)
 
 --> [Material Design Library](https://github.com/navasmdc/MaterialDesignLibrary)
-
---> [Glide Media Management](https://github.com/bumptech/glide)
 
 # Developed By:
 --> Abhay Singh:Feedback is highly appreciated, report any issues or drop suggestions at:[abhay5349singh@gmail.com](mailto:abhay5349singh@gmail.com)
