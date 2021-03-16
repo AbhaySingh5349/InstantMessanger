@@ -9,9 +9,9 @@
 
 --> See uread count, last message with sent/received status, time of message shared.
 
---> See friends Online/Offline/Typing... status.
-
 --> Can update password through Email verification.
+
+--> See friends Online/Offline/Typing... status.
 
 # Screenshots:
 ![Webp net-resizeimage](https://user-images.githubusercontent.com/48565759/103351923-bbd3c800-4aca-11eb-982d-fa0f965704c0.png)
