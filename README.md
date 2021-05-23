@@ -1,7 +1,7 @@
 # Features of App:
---> Search friends, relatives using the application.
 
 --> Email & Password registration using Firebase Authentication.
+--> Search friends, relatives using the application.
 
 --> Send/Accept friend request to users of app to add them in Friends list.
 
