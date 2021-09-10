@@ -5,6 +5,9 @@
 
 --> Send/Accept friend request to users of app to add them in Friends list.
 
+
+
+
 --> Chat with friends (share text messages, images, videos, GIF, links, contact numbers or delete messages).
 
 --> See uread count, last message with sent/received status, time of message shared.
